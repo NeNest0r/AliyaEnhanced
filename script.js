@@ -2,32 +2,24 @@ const toggle = document.querySelector(".menu-toggle");
 const panel = document.querySelector(".menu-panel");
 const contacts = document.querySelector(".contacts");
 
-// ----- BURGER MENU: обновлённое поведение -----
-// закрыть меню (вынесено в функцию для повторного использования)
 function closeMenu() {
   panel.classList.remove("open");
   toggle.classList.remove("open");
 }
 
-// клик по кнопке — открываем/закрываем, предотвращаем всплытие,
-// чтобы глобальный обработчик клика не закрыл меню сразу
 toggle.addEventListener("click", (e) => {
   e.stopPropagation();
   panel.classList.toggle("open");
   toggle.classList.toggle("open");
 });
 
-// если клик внутри панели — не закрываем (останавливаем всплытие)
 panel.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
-// закрыть меню при клике / таче в любом другом месте страницы
 function outsideMenuHandler(e) {
-  // если меню закрыто — ничего не делаем
   if (!panel.classList.contains("open")) return;
 
-  // если клик/тач произошёл внутри .menu-container — не закрываем
   if (e.target.closest(".menu-container")) return;
 
   closeMenu();
@@ -36,13 +28,11 @@ function outsideMenuHandler(e) {
 document.addEventListener("click", outsideMenuHandler);
 document.addEventListener("touchstart", outsideMenuHandler);
 
-// закрыть меню по Esc
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && panel.classList.contains("open")) {
     closeMenu();
   }
 });
-// ----- /BURGER MENU -----
 
 document.querySelectorAll(".menu-link").forEach((link) => {
   link.addEventListener("click", (e) => {
@@ -51,7 +41,6 @@ document.querySelectorAll(".menu-link").forEach((link) => {
     const href = link.getAttribute("href");
     const target = document.querySelector(href);
 
-    // Закрываем меню при выборе пункта
     closeMenu();
 
     if (href === "#contacts") {
@@ -67,12 +56,10 @@ document.querySelectorAll(".menu-link").forEach((link) => {
   });
 });
 
-// Панель убирается скроллом
 window.addEventListener("scroll", () => {
   contacts.classList.remove("visible");
 });
 
-// Панель убирается кликом (для contacts)
 document.addEventListener("click", (e) => {
   if (
     contacts.classList.contains("visible") &&
@@ -83,7 +70,6 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ПЛЕЕР ДЛЯ МУЗЫКИ
 const musicContainer = document.querySelector(".music-container");
 const musicBtn = musicContainer.querySelector(".music-btn");
 const musicPlayer = musicContainer.querySelector(".music-player");
@@ -127,7 +113,6 @@ audio.addEventListener("ended", () => {
   isPlaying = false;
 });
 
-// ФОТО ГАЛЕРЕЯ
 const photoBtn = document.querySelector(".photo-btn");
 const photoGallery = document.querySelector(".photo-gallery");
 const galleryImages = document.querySelector(".gallery-images");
@@ -195,7 +180,6 @@ closeGallery.addEventListener("click", (e) => {
   document.querySelector(".menu-container").style.display = "";
 });
 
-// Кнопки вперед назад
 prevBtn.addEventListener("click", (e) => {
   e.stopPropagation();
   showImage(currentIndex - 1);
@@ -205,7 +189,6 @@ nextBtn.addEventListener("click", (e) => {
   showImage(currentIndex + 1);
 });
 
-// Клик по фону закрывает
 photoGallery.addEventListener("click", (e) => {
   if (e.target === photoGallery) {
     photoGallery.classList.remove("active");
@@ -215,7 +198,6 @@ photoGallery.addEventListener("click", (e) => {
   }
 });
 
-// Свайп для мобилок
 let startX = 0;
 let endX = 0;
 let isSwiping = false;
@@ -269,7 +251,6 @@ galleryImages.addEventListener("touchend", () => {
   endX = 0;
 });
 
-// === ВИДЕО ГАЛЕРЕЯ (фикс телепорта и скролла) ===
 const videoBtn = document.querySelector(".video-btn");
 const videoGallery = document.querySelector(".video-gallery");
 const videoItems = document.querySelector(".video-items");
@@ -279,9 +260,8 @@ const videoNext = document.querySelector(".video-next");
 const videos = Array.from(videoItems.querySelectorAll("video"));
 
 let currentVideoIndex = 0;
-let savedScrollY = 0; // сохраняем позицию страницы
+let savedScrollY = 0;
 
-// helper: показать видео по индексу
 function showVideo(index) {
   if (index < 0) index = videos.length - 1;
   if (index >= videos.length) index = 0;
@@ -291,7 +271,7 @@ function showVideo(index) {
 
   videos.forEach((v, i) => {
     if (i === index) {
-      v.play().catch(() => {}); // игнор ошибок autoplay
+      v.play().catch(() => {});
     } else {
       v.pause();
       v.currentTime = 0;
@@ -299,14 +279,12 @@ function showVideo(index) {
   });
 }
 
-// === открыть галерею ===
 videoBtn.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
 
-  savedScrollY = window.scrollY; // сохраняем позицию перед фиксацией
+  savedScrollY = window.scrollY;
 
-  // фиксируем body, чтобы страница не двигалась
   document.body.style.position = "fixed";
   document.body.style.top = `-${savedScrollY}px`;
   document.body.style.width = "100%";
@@ -319,7 +297,6 @@ videoBtn.addEventListener("click", (e) => {
   showVideo(currentVideoIndex);
 });
 
-// === закрыть галерею ===
 closeVideoGallery.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
@@ -333,14 +310,12 @@ closeVideoGallery.addEventListener("click", (e) => {
   videoGallery.setAttribute("aria-hidden", "true");
   document.querySelector(".menu-container").style.display = "";
 
-  // возвращаем прокрутку и позицию
   document.body.style.position = "";
   document.body.style.top = "";
   document.body.style.overflow = "";
   window.scrollTo({ top: savedScrollY, behavior: "instant" });
 });
 
-// === кнопки листания ===
 videoPrev.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
@@ -353,7 +328,6 @@ videoNext.addEventListener("click", (e) => {
   showVideo(currentVideoIndex + 1);
 });
 
-// === клик по фону — закрыть ===
 videoGallery.addEventListener("click", (e) => {
   if (e.target === videoGallery) {
     e.preventDefault();
@@ -364,7 +338,6 @@ videoGallery.addEventListener("click", (e) => {
     videoGallery.setAttribute("aria-hidden", "true");
     document.querySelector(".menu-container").style.display = "";
 
-    // восстанавливаем прокрутку
     document.body.style.position = "";
     document.body.style.top = "";
     document.body.style.overflow = "";
