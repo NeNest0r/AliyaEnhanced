@@ -119,7 +119,7 @@ header::after {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
 }
 .promo-materials .text-and-photo {
   align-items: center;
@@ -1131,3 +1131,4 @@ header,
   margin: 0 auto;
   pointer-events: none;
 }
+
