@@ -115,7 +115,7 @@ header::after {
   max-height: 100vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
 }
 .promo-materials .text-and-photo {
@@ -1102,3 +1102,4 @@ header,
   margin: 0 auto;
   pointer-events: none;
 }
+
