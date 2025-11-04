@@ -49,29 +49,20 @@ document.querySelectorAll(".menu-link").forEach((link) => {
     }
 
     // фикс тп проверка
-    const isMobile =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      );
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    if (isMobile) {
-      // мобилки
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else {
-      // пк
-      const targetPosition =
-        target.getBoundingClientRect().top + window.scrollY;
-      const offset =
-        targetPosition - (window.innerHeight / 2 - target.offsetHeight / 2);
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    }
-    // мобилки get in touch
-    if (isMobile) {
-      document.body.classList.add("mobile-device");
-    }
+if (isMobile) {
+  // мобилки
+  target.scrollIntoView({ 
+    behavior: 'smooth',
+    block: 'start'
+  });
+} else {
+  // пк
+  const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+  const offset = targetPosition - (window.innerHeight / 2 - target.offsetHeight / 2);
+  window.scrollTo({ top: offset, behavior: "smooth" });
+}
   });
 });
 
