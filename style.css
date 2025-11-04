@@ -1121,36 +1121,38 @@ header,
   }
 }
 
-/* фикс get in touch для мобилок */
-body.mobile-device .contacts {
-  width: 90%;
-  max-width: 200px;
-  padding: 15px 20px 30px 20px;
-  font-size: 14px;
-}
+/* ФИКС */
+@media (max-width: 768px) {
+  .contacts {
+    width: 90%;
+    max-width: 200px;
+    padding: 15px 20px 30px 20px;
+    font-size: 14px;
+  }
 
-body.mobile-device .contacts h1 {
-  font-size: 20px;
-  margin-bottom: 12px;
-}
+  .contacts h1 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
 
-body.mobile-device .contact-buttons {
-  width: 100%;
-  justify-content: center;
-  gap: 8px;
-}
+  .contact-buttons {
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+  }
 
-body.mobile-device .contact-btn {
-  width: 50px;
-  height: 50px;
-}
+  .contact-btn {
+    width: 50px;
+    height: 50px;
+  }
 
-body.mobile-device .contact-btn img {
-  width: 22px;
-  height: 22px;
-}
+  .contact-btn img {
+    width: 22px;
+    height: 22px;
+  }
 
-body.mobile-device .contacts .unselectable-stripe {
-  width: 100%;
-  margin: 10px 0;
+  .contacts .unselectable-stripe {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
