@@ -49,7 +49,13 @@ header::after {
   margin: 0;
   line-height: 0.5;
 }
-.ALIYA {
+.ALIYA1 {
+  font-family: "Michroma", sans-serif;
+  font-style: normal;
+  font-weight: 700px;
+  padding-bottom: 100px;
+}
+.ALIYA2 {
   font-family: "Michroma", sans-serif;
   font-style: normal;
   font-weight: 700px;
@@ -88,8 +94,13 @@ header::after {
   padding-bottom: 50px;
   margin-top: 0;
 }
+.dfc {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .unselectable-stripe {
-  width: 70%;
+  width: 100%;
   max-width: 700px;
   height: 1px;
   background-color: white;
@@ -673,17 +684,6 @@ header img[alt="photo1"] {
   bottom: -1%;
   opacity: 1;
 }
-.contacts h2 {
-  margin: 0 0 10px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-  color: #c70000;
-}
-.contacts p {
-  margin: 5px 0;
-  font-size: 15px;
-  font-family: "Montserrat", sans-serif;
-}
 
 .music-container {
   position: relative;
@@ -1110,10 +1110,47 @@ header,
     flex-direction: row;
     width: 80%;
   }
+  .ALIYA1 {
+    padding-bottom: 0px;
+  }
 }
 @media (max-width: 775px) and (max-height: 500px) {
-  .ALIYA,
-  .presskittext {
+  .ALIYA1,
+  .ALIYA2 {
     display: none;
   }
+}
+
+/* фикс get in touch для мобилок */
+body.mobile-device .contacts {
+  width: 90%;
+  max-width: 200px;
+  padding: 15px 20px 30px 20px;
+  font-size: 14px;
+}
+
+body.mobile-device .contacts h1 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+body.mobile-device .contact-buttons {
+  width: 100%;
+  justify-content: center;
+  gap: 8px;
+}
+
+body.mobile-device .contact-btn {
+  width: 50px;
+  height: 50px;
+}
+
+body.mobile-device .contact-btn img {
+  width: 22px;
+  height: 22px;
+}
+
+body.mobile-device .contacts .unselectable-stripe {
+  width: 100%;
+  margin: 10px 0;
 }
