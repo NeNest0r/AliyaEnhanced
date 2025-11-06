@@ -1156,3 +1156,8 @@ header,
     margin: 10px 0;
   }
 }
+@media (max-width: 500px) {
+  .bio p {
+    font-size: 12px;
+  }
+}
