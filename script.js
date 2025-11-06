@@ -48,21 +48,11 @@ document.querySelectorAll(".menu-link").forEach((link) => {
       return;
     }
 
-    // фикс тп проверка
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+    const offset =
+      targetPosition - (window.innerHeight / 2 - target.offsetHeight / 2);
 
-if (isMobile) {
-  // мобилки
-  target.scrollIntoView({ 
-    behavior: 'smooth',
-    block: 'start'
-  });
-} else {
-  // пк
-  const targetPosition = target.getBoundingClientRect().top + window.scrollY;
-  const offset = targetPosition - (window.innerHeight / 2 - target.offsetHeight / 2);
-  window.scrollTo({ top: offset, behavior: "smooth" });
-}
+    window.scrollTo({ top: offset, behavior: "smooth" });
   });
 });
 
